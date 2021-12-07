@@ -8,6 +8,8 @@ public class Main {
 
     public static void main(String[] args) {
 
+        System.out.println("Hello");
+
         CustomList list = new AdvancedArrayList();
 
         list.add(10);
