@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multicolored_box</title>
+    <style>
+        table {
+            width: 100%
+        }
+
+        td, tr, table {
+            border: 1px darkgray dashed;
+            border-collapse: collapse;
+        }
+
+        td {
+            width: 50px;
+            height: 50px;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+
+        .yellow {
+            background-color: yellow;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        .aquamarine {
+            background-color: aquamarine;
+        }
+
+        .violet {
+            background-color: violet;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <tr>
+        <td class="red" rowspan="3"></td>
+        <td class="blue" colspan="8"></td>
+        <td class="yellow" rowspan="2"></td>
+    </tr>
+    <tr>
+        <td class="green" rowspan="2"></td>
+        <td class="aquamarine" colspan="7"></td>
+    </tr>
+    <tr>
+        <td class="violet" colspan="8"></td>
+    </tr>
+</table>
+</body>
+</html>

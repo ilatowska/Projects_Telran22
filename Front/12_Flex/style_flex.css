@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.row{
+    display: flex;
+    border: 1px solid blue;
+    padding: 10px;
+    _height: 500px;
+    _align-items: flex-start;
+    justify-content: space-between;
+    _flex-direction: row-reverse;
+}
+
+.box{
+    width: 100px;
+    border: 1px solid green;
+    padding: 10px;
+}
+
+.s-box{
+    align-self: center;
+}
+.row-2{
+    margin-top: 40px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.card{
+    background-color: red;
+    padding: 10px;
+    margin: 15px;
+    _width: 150px;
+    /*не будет перескока на новую строку, т.к. ширина постоянно пересчитывается*/
+    _width: calc(100%/4 - 30px);
+    /*для ширины во флексах лучше использовать: */
+    flex-basis: 150px;
+    flex-grow: 1;
+
+}
+
+/*Float
+.card {
+    float: left;
+    border: 1px solid black;
+    padding: 15px;
+    height: 120px;
+    margin: 15px;
+    width: calc(50% - 30px);
+    overflow: scroll; - можно скроллить
+}
+
+.card {
+    display: inline-block;
+    border: 1px solid black;
+    padding: 15px;
+    margin: 15px;
+    width: calc(50% - 30px);
+}*/
+
