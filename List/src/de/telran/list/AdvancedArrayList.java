@@ -1,26 +1,27 @@
 package de.telran.list;
+import java.util.Iterator;
 
-public class AdvancedArrayList implements CustomList {
+public class AdvancedArrayList<T> implements CustomList<T> {
 
-    private int[] source;
+    private T[] source;
 
     public AdvancedArrayList() {
-        source = new int[0];
+        source = (T[]) new Object[0];
     }
 
     public AdvancedArrayList(int initialSize) {
-        source = new int[initialSize];
+        source = (T[]) new Object[initialSize];
     }
 
     @Override
-    public int get(int index) {
+    public T get(int index) {
         if (index < 0 || index >= source.length)
             throw new CustomOutOfBoundsException();
         return source[index];
     }
 
     @Override
-    public void set(int index, int value) {
+    public void set(int index, T value) {
         if (index < 0 || index >= source.length)
             throw new CustomOutOfBoundsException();
         source[index] = value;
@@ -32,7 +33,7 @@ public class AdvancedArrayList implements CustomList {
     }
 
     @Override
-    public boolean contains(int value) {
+    public boolean contains(T value) {
         for (int i = 0; i < source.length; i++) {
             if (value == source[i])
                 return true;
@@ -41,10 +42,11 @@ public class AdvancedArrayList implements CustomList {
     }
 
     @Override
-    public void removeById(int index) {
+    public T removeById(int index) {
         if (index < 0 || index >= source.length)
             throw new CustomOutOfBoundsException();
-        int[] newSource = new int[source.length - 1];
+        T[] newSource = (T[]) new Object[source.length - 1];
+        T res = source [index];
 
         for (int i = 0; i < index; i++) {
             newSource[i] = source[i];
@@ -52,21 +54,32 @@ public class AdvancedArrayList implements CustomList {
         for (int i = index; i < newSource.length; i++) {
             newSource[i] = source[i + 1];
         }
-
         source = newSource;
+        return res;
     }
 
     @Override
-    public void add(int value) {
+    public boolean removeByValue(T value) {
+        for (int i = 0; i < source.length; i++) {
+            if (source[i].equals(value)) {
+                removeById(i);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void add(T value) {
         insert(source.length, value);
     }
 
     @Override
-    public void insert(int index, int value) {
+    public void insert(int index, T value) {
         if (index < 0 || index > source.length)
             throw new CustomOutOfBoundsException();
 
-        int[] newSource = new int[source.length + 1];
+        T[] newSource = (T[]) new Object[source.length + 1];
 
         for (int i = 0; i < index; i++) {
             newSource[i] = source[i];
@@ -85,5 +98,27 @@ public class AdvancedArrayList implements CustomList {
             System.out.print(source[i] + " ");
         }
         System.out.println();
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new BasicIterator();
+    }
+
+    private class BasicIterator implements Iterator<T> {
+
+        private int currentIndex = 0;
+
+        @Override
+        public boolean hasNext() {
+            return currentIndex < source.length;
+        }
+
+        @Override
+        public T next() {
+            T res = source[currentIndex];
+            currentIndex++;
+            return res;
+        }
     }
 }
